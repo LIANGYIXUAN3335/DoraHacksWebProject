@@ -1,28 +1,26 @@
-name: Test Coverage
+name: Backend Test Coverage
 
 on: [push, pull_request]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Set up JDK 21
+        uses: actions/setup-java@v2
         with:
-          node-version: "16"
+          distribution: "temurin"
+          java-version: "21"
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests with coverage
-        run: npm test -- --coverage
+      - name: Build and run tests with coverage
+        run: mvn clean verify
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
-          path: coverage
+          path: target/site/jacoco/
