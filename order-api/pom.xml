@@ -30,7 +30,7 @@
         <java.version>21</java.version>
         <jjwt.version>0.12.6</jjwt.version>
         <springdoc-openapi.version>2.7.0</springdoc-openapi.version>
-        <lombok.version>1.18.24</lombok.version> <!-- 添加 lombok 版本号 -->
+        <lombok.version>1.18.24</lombok.version> 
     </properties>
     <dependencies>
         <dependency>
@@ -84,7 +84,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version> <!-- 添加版本号 -->
+            <version>${lombok.version}</version> 
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -104,7 +104,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
+                <version>3.11.0</version> 
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -112,7 +112,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version> <!-- 添加版本号 -->
+                            <version>${lombok.version}</version> 
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
@@ -133,12 +133,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>3.0.0-M5</version> 
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.5</version>
+                <version>0.8.8</version> 
                 <executions>
                     <execution>
                         <goals>
