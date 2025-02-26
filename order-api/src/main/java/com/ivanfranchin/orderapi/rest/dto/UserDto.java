@@ -23,7 +23,7 @@ public record UserDto(Long id, String username, String name, String email, Strin
         return new UserDto(
                 user.getId(),
                 user.getUsername(),
-                user.getName(),
+                user.getNickname(),
                 user.getEmail(),
                 user.getRole(),
                 orders

@@ -3,6 +3,8 @@ package com.ivanfranchin.orderapi.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import com.ivanfranchin.orderapi.rest.dto.UpdateUserRequest;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -46,5 +48,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(User user) {
         userRepository.delete(user);
+    }
+
+    @Override
+    public User updateUser(String username, UpdateUserRequest updateUserRequest) {
+        return userRepository.findByUsername(username).map(user -> {
+            user.setNickname(updateUserRequest.nickname());
+            user.setEmail(updateUserRequest.email());
+            user.setProfilePicture(updateUserRequest.profilePicture());
+            return userRepository.save(user);
+        }).orElseThrow(() -> new UserNotFoundException(String.format("User with id %d not found", username)));
     }
 }

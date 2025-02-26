@@ -30,18 +30,22 @@ public class User {
 
     private String username;
     private String password;
-    private String name;
+    private String nickname;
     private String email;
     private String role;
+    private String profilePicture;
+
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
-    public User(String username, String password, String name, String email, String role) {
+    public User(String username, String password, String nickname, String email, String role) {
         this.username = username;
         this.password = password;
-        this.name = name;
+        this.nickname = nickname;
         this.email = email;
         this.role = role;
+        this.profilePicture = profilePicture;
+
     }
 }

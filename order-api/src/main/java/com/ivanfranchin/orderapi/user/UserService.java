@@ -3,6 +3,8 @@ package com.ivanfranchin.orderapi.user;
 import java.util.List;
 import java.util.Optional;
 
+import com.ivanfranchin.orderapi.rest.dto.UpdateUserRequest;
+
 public interface UserService {
 
     List<User> getUsers();
@@ -18,4 +20,7 @@ public interface UserService {
     User saveUser(User user);
 
     void deleteUser(User user);
+
+    User updateUser( String username, UpdateUserRequest userUpdateRequest);
+
 }
