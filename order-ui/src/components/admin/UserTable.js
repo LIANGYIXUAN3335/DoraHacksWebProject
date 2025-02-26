@@ -1,25 +1,34 @@
-import React from 'react'
-import { Form, Button, Input, Table } from 'semantic-ui-react'
+import React from "react";
+import PropTypes from "prop-types";
+import { Form, Button, Input, Table } from "semantic-ui-react";
 
-function UserTable({ users, userUsernameSearch, handleInputChange, handleDeleteUser, handleSearchUser }) {
-  let userList
+function UserTable({
+  users,
+  userUsernameSearch,
+  handleInputChange,
+  handleDeleteUser,
+  handleSearchUser,
+}) {
+  let userList;
   if (users.length === 0) {
     userList = (
-      <Table.Row key='no-user'>
-        <Table.Cell collapsing textAlign='center' colSpan='6'>No user</Table.Cell>
+      <Table.Row key="no-user">
+        <Table.Cell collapsing textAlign="center" colSpan="6">
+          No user
+        </Table.Cell>
       </Table.Row>
-    )
+    );
   } else {
-    userList = users.map(user => {
+    userList = users.map((user) => {
       return (
         <Table.Row key={user.id}>
           <Table.Cell collapsing>
             <Button
               circular
-              color='red'
-              size='small'
-              icon='trash'
-              disabled={user.username === 'admin'}
+              color="red"
+              size="small"
+              icon="trash"
+              disabled={user.username === "admin"}
               onClick={() => handleDeleteUser(user.username)}
             />
           </Table.Cell>
@@ -29,17 +38,17 @@ function UserTable({ users, userUsernameSearch, handleInputChange, handleDeleteU
           <Table.Cell>{user.email}</Table.Cell>
           <Table.Cell>{user.role}</Table.Cell>
         </Table.Row>
-      )
-    })
+      );
+    });
   }
 
   return (
     <>
       <Form onSubmit={handleSearchUser}>
         <Input
-          action={{ icon: 'search' }}
-          name='userUsernameSearch'
-          placeholder='Search by Username'
+          action={{ icon: "search" }}
+          name="userUsernameSearch"
+          placeholder="Search by Username"
           value={userUsernameSearch}
           onChange={handleInputChange}
         />
@@ -55,12 +64,18 @@ function UserTable({ users, userUsernameSearch, handleInputChange, handleDeleteU
             <Table.HeaderCell width={2}>Role</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
-        <Table.Body>
-          {userList}
-        </Table.Body>
+        <Table.Body>{userList}</Table.Body>
       </Table>
     </>
-  )
+  );
 }
 
-export default UserTable
+UserTable.propTypes = {
+  users: PropTypes.array.isRequired,
+  userUsernameSearch: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  handleDeleteUser: PropTypes.func.isRequired,
+  handleSearchUser: PropTypes.func.isRequired,
+};
+
+export default UserTable;
