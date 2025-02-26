@@ -1,4 +1,4 @@
-package com.yixuanliang.orderapi;
+package com.yixuanliang.userapi;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

@@ -25,11 +25,9 @@ import java.util.stream.Collectors;
 @Component
 public class TokenProvider {
 
-    @Value("${app.jwt.secret}")
-    private String jwtSecret;
+    @Value("${app.jwt.secret}") String jwtSecret;
 
-    @Value("${app.jwt.expiration.minutes}")
-    private Long jwtExpirationMinutes;
+    @Value("${app.jwt.expiration.minutes}") Long jwtExpirationMinutes;
 
     public String generate(Authentication authentication) {
         CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
