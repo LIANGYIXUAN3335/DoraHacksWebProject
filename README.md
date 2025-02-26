@@ -1,6 +1,6 @@
 # springboot-react-jwt-token
 
-The goal of this project is to implement an application called `order-app` to manage orders. For it, we will implement a back-end [`Spring Boot`](https://docs.spring.io/spring-boot/index.html) application called `order-api` and a font-end [React](https://react.dev/) application called `order-ui`. Besides, we will use [`JWT Authentication`](https://en.wikipedia.org/wiki/JSON_Web_Token) to secure both applications.
+The goal of this project is to implement an application called `user-app` to manage users. For it, we will implement a back-end [`Spring Boot`](https://docs.spring.io/spring-boot/index.html) application called `user-api` and a font-end [React](https://react.dev/) application called `user-ui`. Besides, we will use [`JWT Authentication`](https://en.wikipedia.org/wiki/JSON_Web_Token) to secure both applications.
 
 ## Proof-of-Concepts & Articles
 
@@ -19,34 +19,44 @@ On [ivangfr.github.io](https://ivangfr.github.io), I have compiled my Proof-of-C
 
 ## Applications
 
-- ### order-api
+- ### user-api
 
-  `Spring Boot` Web Java backend application that exposes a Rest API to create, retrieve and delete orders. If a user has `ADMIN` role he/she can also retrieve information of other users or delete them.
+  `Spring Boot` Web Java backend application that exposes a Rest API to create, retrieve and delete users. If a user has `ADMIN` role he/she can also retrieve information of other users or delete them.
 
   The application secured endpoints can just be accessed if a valid JWT access token is provided.
 
-  `order-api` stores its data in [`Postgres`](https://www.postgresql.org/) database.
+  `user-api` stores its data in [`Postgres`](https://www.postgresql.org/) database.
 
-  `order-api` has the following endpoints:
+  #### Why Choose PostgreSQL as the Database
 
-  | Endpoint                                                      | Secured | Roles           |
-  | ------------------------------------------------------------- | ------- | --------------- |
-  | `POST /auth/authenticate -d {"username","password"}`          | No      |                 |
-  | `POST /auth/signup -d {"username","password","name","email"}` | No      |                 |
-  | `GET /public/numberOfUsers`                                   | No      |                 |
-  | `GET /api/users/me`                                           | Yes     | `ADMIN`, `USER` |
-  | `GET /api/users`                                              | Yes     | `ADMIN`         |
-  | `GET /api/users/{username}`                                   | Yes     | `ADMIN`         |
-  | `DELETE /api/users/{username}`                                | Yes     | `ADMIN`         |
-  | `PUT /api/users/{username}`                                   | Yes     | `ADMIN`, `USER` |
+  In this project, we chose PostgreSQL as the database for several reasons:
 
-- ### order-ui
+  Data Consistency and Integrity: PostgreSQL provides strong data consistency and integrity guarantees, making it suitable for applications that require strict data constraints. Our project involves user management, and this data needs to maintain high consistency and integrity.
 
-  `React` frontend application where a user with role `USER` can create an order and retrieve a specific order. On the other hand, a user with role `ADMIN` as access to all secured endpoints.
+  Support for Complex Queries: PostgreSQL supports complex SQL queries and join operations, making it suitable for handling complex data relationships. Our project may require complex query operations, such as querying user details based on user information, which can be efficiently executed in PostgreSQL.
 
-  In order to access the application, a `user` or `admin` must login using his/her `username` and `password`. All the requests coming from `order-ui` to secured endpoints in `order-api` have the JWT access token. This token is generated when the `user` or `admin` logins.
+  Rich Data Types: PostgreSQL supports a variety of data types, including JSON, arrays, range types, etc., providing flexible data handling capabilities. Our project may need to store and process various types of data, such as user personal information, email, and profile pictures, which PostgreSQL can handle well.
 
-  `order-ui` uses [`Semantic UI React`](https://react.semantic-ui.com/) as CSS-styled framework.
+`user-api` has the following endpoints:
+
+| Endpoint                                                      | Secured | Roles           |
+| ------------------------------------------------------------- | ------- | --------------- |
+| `POST /auth/authenticate -d {"username","password"}`          | No      |                 |
+| `POST /auth/signup -d {"username","password","name","email"}` | No      |                 |
+| `GET /public/numberOfUsers`                                   | No      |                 |
+| `GET /api/users/me`                                           | Yes     | `ADMIN`, `USER` |
+| `GET /api/users`                                              | Yes     | `ADMIN`         |
+| `GET /api/users/{username}`                                   | Yes     | `ADMIN`         |
+| `DELETE /api/users/{username}`                                | Yes     | `ADMIN`         |
+| `PUT /api/users/{username}`                                   | Yes     | `ADMIN`, `USER` |
+
+- ### user-ui
+
+  `React` frontend application where a user with role `USER` can create an user and retrieve a specific user. On the other hand, a user with role `ADMIN` as access to all secured endpoints.
+
+  In user to access the application, a `user` or `admin` must login using his/her `username` and `password`. All the requests coming from `user-ui` to secured endpoints in `user-api` have the JWT access token. This token is generated when the `user` or `admin` logins.
+
+  `user-ui` uses [`Semantic UI React`](https://react.semantic-ui.com/) as CSS-styled framework.
 
 ## Prerequisites
 
@@ -64,20 +74,20 @@ On [ivangfr.github.io](https://ivangfr.github.io), I have compiled my Proof-of-C
   docker compose up -d
   ```
 
-## Running order-app using Maven & Npm
+## Running user-app using Maven & Npm
 
-- **order-api**
+- **user-api**
 
-  - Open a terminal and navigate to the `springboot-react-jwt-token/order-api` folder;
+  - Open a terminal and navigate to the `springboot-react-jwt-token/user-api` folder;
 
   - Run the following `Maven` command to start the application:
     ```
     ./mvnw clean spring-boot:run
     ```
 
-- **order-ui**
+- **user-ui**
 
-  - Open another terminal and navigate to the `springboot-react-jwt-token/order-ui` folder;
+  - Open another terminal and navigate to the `springboot-react-jwt-token/user-ui` folder;
 
   - Run the command below if you are running the application for the first time:
 
@@ -112,26 +122,22 @@ On [ivangfr.github.io](https://ivangfr.github.io), I have compiled my Proof-of-C
 
 | Application | URL                                   | Credentials                                         |
 | ----------- | ------------------------------------- | --------------------------------------------------- |
-| order-api   | http://localhost:8080/swagger-ui.html |                                                     |
-| order-ui    | http://localhost:3000                 | `admin/admin`, `user/user` or signing up a new user |
+| user-api    | http://localhost:8080/swagger-ui.html |                                                     |
+| user-ui     | http://localhost:3000                 | `admin/admin`, `user/user` or signing up a new user |
 
 > **Note**: the credentials shown in the table are the ones already pre-defined. You can signup new users.
 
 ## Demo
 
-- The gif below shows a `user` loging in:
+- The video below shows a `user` loging in:
 
-  ![user-login](documentation/user-action.mov)
+  ![user-login](documentation/user-action.gif)
 
-- The gif below shows an `admin` loging in:
+- The video below shows an `admin` loging in:
 
   ![admin-login](documentation/admin-login.gif)
 
   ## Security and JWT Configuration
-
-  ### Encryption Method
-
-  The project uses `BCryptPasswordEncoder` for password encryption. `BCryptPasswordEncoder` is a password encoder provided by Spring Security that uses the BCrypt strong hashing function to secure passwords.
 
   ### Security Strategy
 
@@ -160,7 +166,7 @@ On [ivangfr.github.io](https://ivangfr.github.io), I have compiled my Proof-of-C
 - **Postgres**
 
   ```
-  docker exec -it postgres psql -U postgres -d userdb
+  docker exec -it postgres psql -U postgres -d orderdb
   \dt
   ```
 
@@ -170,16 +176,16 @@ On [ivangfr.github.io](https://ivangfr.github.io), I have compiled my Proof-of-C
 
 ## Shutdown
 
-- To stop `order-api` and `order-ui`, go to the terminals where they are running and press `Ctrl+C`;
+- To stop `user-api` and `user-ui`, go to the terminals where they are running and press `Ctrl+C`;
 
 - To stop and remove docker compose containers, network and volumes, go to a terminal and, inside the `springboot-react-jwt-token` root folder, run the command below:
   ```
   docker compose down -v
   ```
 
-## How to upgrade order-ui dependencies to latest version
+## How to upgrade user-ui dependencies to latest version
 
-- In a terminal, make sure you are in the `springboot-react-jwt-token/order-ui` folder;
+- In a terminal, make sure you are in the `springboot-react-jwt-token/user-ui` folder;
 
 - Run the following commands:
   ```

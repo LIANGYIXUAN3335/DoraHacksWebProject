@@ -1,11 +1,11 @@
 spring:
   application:
-    name: order-api
+    name: user-api
   jpa:
     hibernate:
       ddl-auto: create
   datasource:
-    url: jdbc:postgresql://localhost:5432/userdb
+    url: jdbc:postgresql://localhost:5432/orderdb
     username: postgres
     password: postgres
 

@@ -46,7 +46,7 @@ function Navbar() {
       style={{ borderRadius: 0 }}
     >
       <Container>
-        <Menu.Item header>Order-UI</Menu.Item>
+        <Menu.Item header>User-UI</Menu.Item>
         <Menu.Item as={Link} exact="true" to="/">
           Home
         </Menu.Item>
