@@ -29,7 +29,7 @@ class UserRepositoryTest {
         user.setPassword("password");
         user.setNickname("User");
         user.setEmail("user@example.com");
-        user.setRole("ROLE_USER");
+        user.setRole("USER");
         userRepository.save(user);
     }
 
