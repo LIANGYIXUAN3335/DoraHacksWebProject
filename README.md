@@ -135,7 +135,7 @@ On [ivangfr.github.io](https://ivangfr.github.io), I have compiled my Proof-of-C
 
 - The video below shows an `admin` loging in:
 
-  ![admin-login](documentation/admin-login.gif)
+  ![admin-login](documentation/admin-action.gif)
 
   ## Security and JWT Configuration
 
