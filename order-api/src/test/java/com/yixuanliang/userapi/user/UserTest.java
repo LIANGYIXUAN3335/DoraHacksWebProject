@@ -14,8 +14,6 @@ class UserTest {
         String nickname = "User";
         String email = "user@example.com";
         String role = "ROLE_USER";
-        String profilePicture = "profile.jpg";
-
         User user = new User(username, password, nickname, email, role);
 
         assertEquals(username, user.getUsername());
@@ -23,7 +21,7 @@ class UserTest {
         assertEquals(nickname, user.getNickname());
         assertEquals(email, user.getEmail());
         assertEquals(role, user.getRole());
-        assertNull(user.getProfilePicture()); // Since profilePicture is not set in the constructor
+        assertNull(user.getProfilePicture()); 
     }
 
     @Test

@@ -79,6 +79,7 @@ function Signup() {
         <Form size="large" onSubmit={handleSubmit}>
           <Segment>
             <Form.Input
+              data-testid="signup-username"
               fluid
               autoFocus
               name="username"
@@ -89,6 +90,7 @@ function Signup() {
               onChange={handleInputChange}
             />
             <Form.Input
+              data-testid="signup-password"
               fluid
               name="password"
               icon="lock"
@@ -99,6 +101,7 @@ function Signup() {
               onChange={handleInputChange}
             />
             <Form.Input
+              data-testid="signup-name"
               fluid
               name="name"
               icon="address card"
@@ -108,6 +111,7 @@ function Signup() {
               onChange={handleInputChange}
             />
             <Form.Input
+              data-testid="signup-email"
               fluid
               name="email"
               icon="at"
@@ -116,7 +120,12 @@ function Signup() {
               value={email}
               onChange={handleInputChange}
             />
-            <Button color="violet" fluid size="large">
+            <Button
+              color="violet"
+              fluid
+              size="large"
+              data-testid="signup-button"
+            >
               Signup
             </Button>
           </Segment>

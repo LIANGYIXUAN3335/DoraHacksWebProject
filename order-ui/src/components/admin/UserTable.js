@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Form, Button, Input, Table } from "semantic-ui-react";
+import { data } from "react-router-dom";
 
 function UserTable({
   users,
@@ -19,11 +20,12 @@ function UserTable({
       </Table.Row>
     );
   } else {
-    userList = users.map((user) => {
+    userList = users.map((user, index) => {
       return (
-        <Table.Row key={user.id}>
+        <Table.Row key={user.id} data-testid="user-list">
           <Table.Cell collapsing>
             <Button
+              data-testid={`delete-user-${index}`}
               circular
               color="red"
               size="small"
@@ -33,7 +35,9 @@ function UserTable({
             />
           </Table.Cell>
           <Table.Cell>{user.id}</Table.Cell>
-          <Table.Cell>{user.username}</Table.Cell>
+          <Table.Cell data-testid={`user-username-${index}`}>
+            {user.username}
+          </Table.Cell>
           <Table.Cell>{user.name}</Table.Cell>
           <Table.Cell>{user.email}</Table.Cell>
           <Table.Cell>{user.role}</Table.Cell>
@@ -46,7 +50,8 @@ function UserTable({
     <>
       <Form onSubmit={handleSearchUser}>
         <Input
-          action={{ icon: "search" }}
+          data-testid="user-username-search"
+          action={{ icon: "search", "data-testid": "search-button" }}
           name="userUsernameSearch"
           placeholder="Search by Username"
           value={userUsernameSearch}

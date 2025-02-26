@@ -14,7 +14,6 @@ import { handleLogError } from "../misc/Helpers";
 
 function Home() {
   const [numberOfUsers, setNumberOfUsers] = useState(0);
-  const [numberOfOrders, setNumberOfOrders] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -23,11 +22,7 @@ function Home() {
         const responseUsers = await userApi.numberOfUsers();
         const numberOfUsers = responseUsers.data;
 
-        const responseOrders = await userApi.numberOfOrders();
-        const numberOfOrders = responseOrders.data;
-
         setNumberOfUsers(numberOfUsers);
-        setNumberOfOrders(numberOfOrders);
       } catch (error) {
         handleLogError(error);
       } finally {
@@ -54,7 +49,7 @@ function Home() {
     <Container text>
       <Grid stackable columns={2}>
         <Grid.Row>
-          <Grid.Column textAlign="center">
+          <Grid.Column textAlign="center" data-testid="home-user-number">
             <Segment color="violet">
               <Statistic>
                 <Statistic.Value>
@@ -65,28 +60,8 @@ function Home() {
               </Statistic>
             </Segment>
           </Grid.Column>
-          <Grid.Column textAlign="center">
-            <Segment color="violet">
-              <Statistic>
-                <Statistic.Value>
-                  <Icon name="laptop" color="grey" />
-                  {numberOfOrders}
-                </Statistic.Value>
-                <Statistic.Label>Orders</Statistic.Label>
-              </Statistic>
-            </Segment>
-          </Grid.Column>
         </Grid.Row>
       </Grid>
-
-      <Image
-        src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png"
-        style={{ marginTop: "2em" }}
-      />
-      <Image
-        src="https://react.semantic-ui.com/images/wireframe/paragraph.png"
-        style={{ marginTop: "2em" }}
-      />
     </Container>
   );
 }

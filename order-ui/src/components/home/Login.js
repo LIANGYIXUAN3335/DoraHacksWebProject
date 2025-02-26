@@ -56,6 +56,7 @@ function Login() {
         <Form size="large" onSubmit={handleSubmit}>
           <Segment>
             <Form.Input
+              data-testid="login-username"
               fluid
               autoFocus
               name="username"
@@ -66,6 +67,7 @@ function Login() {
               onChange={handleInputChange}
             />
             <Form.Input
+              data-testid="login-password"
               fluid
               name="password"
               icon="lock"
@@ -75,7 +77,12 @@ function Login() {
               value={password}
               onChange={handleInputChange}
             />
-            <Button color="violet" fluid size="large">
+            <Button
+              color="violet"
+              fluid
+              size="large"
+              data-testid="login-button"
+            >
               Login
             </Button>
           </Segment>

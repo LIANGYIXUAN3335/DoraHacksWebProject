@@ -46,11 +46,12 @@ function UpdateUserTable({
           <Table.Body>
             <Table.Row>
               <Table.Cell>{user.username}</Table.Cell>
-              <Table.Cell>{user.name}</Table.Cell>
-              <Table.Cell>{user.email}</Table.Cell>
+              <Table.Cell data-testid="user-name">{user.name}</Table.Cell>
+              <Table.Cell data-testid="user-email">{user.email}</Table.Cell>
               <Table.Cell>{user.role}</Table.Cell>
               <Table.Cell>
                 <Button
+                  data-testid="update-user-profile"
                   circular
                   color="blue"
                   size="small"
@@ -74,12 +75,14 @@ function UpdateUserTable({
                 disabled
               />
               <Form.Input
+                data-testid="update-user-nickname"
                 label="nickname"
                 name="nickname"
                 value={nickname}
                 onChange={handleUserProfileInputChange}
               />
               <Form.Input
+                data-testid="update-user-email"
                 label="email"
                 name="email"
                 value={email}
@@ -94,8 +97,17 @@ function UpdateUserTable({
             </Form>
           </Modal.Content>
           <Modal.Actions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button color="blue" onClick={handleSubmit}>
+            <Button
+              data-testid="cancel-update-user-button"
+              onClick={handleClose}
+            >
+              Cancel
+            </Button>
+            <Button
+              color="blue"
+              onClick={handleSubmit}
+              data-testid="update-user-button"
+            >
               Update
             </Button>
           </Modal.Actions>
