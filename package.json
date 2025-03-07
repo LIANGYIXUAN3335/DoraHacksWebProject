@@ -1,5 +1,8 @@
 {
+  "name": "dorahacks-project",
+  "version": "1.0.0",
   "scripts": {
+    "heroku-postbuild": "cd user-ui && npm install && npm start",
     "test": "react-scripts test --coverage"
   },
   "devDependencies": {
